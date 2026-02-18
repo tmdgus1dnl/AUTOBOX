@@ -1,0 +1,12 @@
+smart_mqtt_bridge:
+  ros__parameters:
+    mqtt_broker_ip: "192.168.137.85"
+    mqtt_port: 1883
+    
+    # 토픽 이름 설정
+    topic_cmd_sub: "factory_msg/rc1/command"       # 받는 토픽 (Rpi -> Jetson)
+    topic_status_pub: "edge_msg/rc1/state"   # 보내는 토픽 (Jetson -> Rpi)
+    topic_rpi_control: "edge_msg/rc1/command"
+    
+    # 데이터 파일 경로 (런치 파일에서 자동으로 채워줄 예정)
+    waypoint_file_path: ""

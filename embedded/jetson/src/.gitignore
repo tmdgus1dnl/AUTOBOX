@@ -1,0 +1,15 @@
+# ROS 2 빌드 및 로그 파일
+build/
+install/
+log/
+
+# Python 임시 파일 (파이썬 패키지인 경우)
+__pycache__/
+*.pyc
+*.pyo
+
+# C++ 및 IDE 관련 파일
+.vscode/
+CMakeLists.txt.user
+*.swp
+*~

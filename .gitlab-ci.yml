@@ -1,0 +1,77 @@
+stages:
+  - build
+  - deploy
+
+.docker-build-template:
+  stage: build
+  image: docker:24.0.5
+  services:
+    - docker:24.0.5-dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - cd $TARGET_DIR
+    - docker build -t $CI_REGISTRY_IMAGE/$TARGET_DIR:$CI_COMMIT_SHA .
+    - docker push $CI_REGISTRY_IMAGE/$TARGET_DIR:$CI_COMMIT_SHA
+
+# --- Build Jobs ---
+
+build-backend:
+  extends: .docker-build-template
+  variables:
+    TARGET_DIR: "backend"
+  rules:
+    - changes:
+        - backend/**/*
+
+build-frontend:
+  extends: .docker-build-template
+  variables:
+    TARGET_DIR: "frontend"
+  rules:
+    - changes:
+        - frontend/**/*
+
+build-raspberry:
+  extends: .docker-build-template
+  variables:
+    TARGET_DIR: "embedded/raspberry"
+  rules:
+    - changes:
+        - embedded/raspberry/**/*
+
+# --- Deploy Jobs ---
+
+.deploy-template:
+  stage: deploy
+  script:
+    - cd $TARGET_DIR
+    - docker compose pull
+    - docker compose up -d
+
+deploy-backend:
+  extends: .deploy-template
+  tags: [ec2-runner]
+  variables:
+    TARGET_DIR: "backend"
+  needs: ["build-backend"] 
+  rules:
+    - changes: [backend/**/*]
+
+deploy-frontend:
+  extends: .deploy-template
+  tags: [ec2-runner]
+  variables:
+    TARGET_DIR: "frontend"
+  needs: ["build-frontend"]
+  rules:
+    - changes: [frontend/**/*]
+
+deploy-raspberry:
+  extends: .deploy-template
+  tags: [rpi-runner]
+  variables:
+    TARGET_DIR: "embedded/raspberry"
+  needs: ["build-raspberry"]
+  rules:
+    - changes: [embedded/raspberry/**/*]

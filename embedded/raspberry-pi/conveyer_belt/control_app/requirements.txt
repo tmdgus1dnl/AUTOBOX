@@ -1,0 +1,3 @@
+rpi-lgpio
+paho-mqtt
+smbus

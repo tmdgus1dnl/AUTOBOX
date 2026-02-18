@@ -1,0 +1,20 @@
+# AutoBox MQTT ACL
+# 서버 -> 라즈베리파이: server_msg/#
+# 라즈베리파이 -> 서버: factory_msg/#
+
+user backend
+topic write server_msg/#
+topic read factory_msg/#
+topic read $SYS/#
+
+user raspberry-pi
+topic read server_msg/#
+topic write factory_msg/#
+
+user dashboard
+topic read server_msg/#
+topic read factory_msg/#
+topic read $SYS/#
+
+pattern read $SYS/#
+

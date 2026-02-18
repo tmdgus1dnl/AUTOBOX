@@ -1,0 +1,12 @@
+# Goal (요청)
+bool start_parking
+float32 stop_distance
+float32 slow_distance
+float32 forward_distance
+---
+# Result (최종 결과)
+bool success
+string message
+---
+# Feedback (중간 보고)
+float32 distance

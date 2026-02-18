@@ -1,0 +1,531 @@
+/* ============================================
+   LogiTwin - Industrial Dashboard Theme System
+   ============================================ */
+
+/* ============================================
+   Base Color Palette
+   ============================================ */
+:root {
+  /* ============================================
+     Premium Glassmorphism Palette
+     ============================================ */
+
+  /* Primary Colors (Neon/Electric) */
+  --color-primary: #6366f1;
+  /* Indigo */
+  --color-primary-hover: #4f46e5;
+  --color-primary-glow: rgba(99, 102, 241, 0.5);
+
+  --color-secondary: #06b6d4;
+  /* Cyan */
+  --color-secondary-glow: rgba(6, 182, 212, 0.5);
+
+  --color-accent: #f472b6;
+  /* Pink */
+  --color-accent-glow: rgba(244, 114, 182, 0.5);
+
+  /* Status Colors (Neon) */
+  --color-success: #10b981;
+  /* Emerald */
+  --color-success-glow: rgba(16, 185, 129, 0.4);
+
+  --color-warning: #f59e0b;
+  /* Amber */
+  --color-warning-glow: rgba(245, 158, 11, 0.4);
+
+  --color-error: #ef4444;
+  /* Red */
+  --color-error-glow: rgba(239, 68, 68, 0.4);
+
+  --color-info: #3b82f6;
+  /* Blue */
+  --color-info-glow: rgba(59, 130, 246, 0.4);
+
+  --chart-primary: #6366f1;
+  --chart-success: #10b981;
+  --chart-warning: #f59e0b;
+  --chart-danger: #ef4444;
+  --chart-pending-color: #475569;
+  /* 다크모드 미완료 차트 색상 */
+}
+
+/* ============================================
+   Dark Theme (Glass Default)
+   ============================================ */
+:root,
+[data-theme="dark"] {
+  /* Backgrounds - Deep Space */
+  --bg-base: #0f172a;
+  /* Fallback */
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+
+  /* Glass Surfaces */
+  --glass-panel: rgba(30, 41, 59, 0.6);
+  --glass-header: rgba(15, 23, 42, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(255, 255, 255, 0.15);
+  --glass-shine: rgba(255, 255, 255, 0.05);
+
+  /* Transparent Overlays */
+  --overlay-dark: rgba(0, 0, 0, 0.2);
+  --overlay-darker: rgba(0, 0, 0, 0.3);
+  --overlay-light: rgba(255, 255, 255, 0.03);
+  --overlay-lighter: rgba(255, 255, 255, 0.05);
+
+  /* Table Header */
+  --table-header-bg: rgba(15, 23, 42, 0.8);
+
+  /* Video Panel */
+  --video-panel-bg: rgba(15, 23, 42, 0.6);
+  --video-container-bg: #1a1a2e;
+  --video-feed-bg: #000000;
+  --video-feed-border: #333333;
+  --map-container-bg: linear-gradient(180deg, #1a1a2e 0%, #0f0f1a 100%);
+  --map-floor-color: 0x2a2a3d;
+  --map-wall-color: 0x505060;
+
+  /* Text */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-inverse: #0f172a;
+
+  /* Shadows */
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  --shadow-neon: 0 0 15px var(--color-primary-glow);
+
+  /* Backdrop Filter */
+  --blur-amount: 12px;
+}
+
+/* ============================================
+   Light Theme (Frosted Glass)
+   ============================================ */
+[data-theme="light"] {
+  /* Backgrounds */
+  --bg-base: #f0f4f8;
+  --bg-gradient: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+
+  /* Glass Surfaces */
+  --glass-panel: rgba(255, 255, 255, 0.7);
+  --glass-header: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(226, 232, 240, 0.6);
+  --glass-border-hover: rgba(203, 213, 225, 0.8);
+  --glass-shine: rgba(255, 255, 255, 0.5);
+
+  /* Transparent Overlays */
+  --overlay-dark: rgba(148, 163, 184, 0.1);
+  --overlay-darker: rgba(100, 116, 139, 0.15);
+  --overlay-light: rgba(255, 255, 255, 0.5);
+  --overlay-lighter: rgba(255, 255, 255, 0.7);
+
+  /* Table Header */
+  --table-header-bg: rgba(241, 245, 249, 0.9);
+
+  /* Video Panel */
+  --video-panel-bg: rgba(241, 245, 249, 0.8);
+  --video-container-bg: #e2e8f0;
+  --video-feed-bg: #f1f5f9;
+  --video-feed-border: #cbd5e1;
+  --map-container-bg: linear-gradient(180deg, #e2e8f0 0%, #f1f5f9 100%);
+  --map-floor-color: 0xe5e8eb;
+  --map-wall-color: 0x64748b;
+
+  /* Text */
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-inverse: #ffffff;
+
+  /* Shadows */
+  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  --shadow-neon: 0 0 10px rgba(99, 102, 241, 0.2);
+
+  --blur-amount: 10px;
+
+  /* Chart Colors - Light Mode */
+  --chart-pending-color: #64748b;
+  /* 라이트모드 미완료 차트 색상 (더 진한 회색) */
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+/* ============================================
+   Typography Scale
+   ============================================ */
+:root {
+  /* 제목 폰트 */
+  --font-size-h1: 1.75rem;
+  --font-size-h2: 1.5rem;
+  --font-size-h3: 1.25rem;
+
+  /* 본문 폰트 */
+  --font-size-lg: 1rem;
+  --font-size-base: 0.9375rem;
+  --font-size-sm: 0.8125rem;
+  --font-size-xs: 0.75rem;
+
+  /* 특수 폰트 (데이터 표시용) */
+  --font-size-data-xl: 2.5rem;
+  --font-size-data-lg: 1.5rem;
+  --font-size-data-base: 1rem;
+
+  /* 레이블 폰트 */
+  --font-size-label: 0.75rem;
+
+  /* 폰트 패밀리 - Pretendard */
+  --font-family-base: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+
+  /* 터치 최적화 */
+  --touch-target-min: 44px;
+  --spacing-xs: 6px;
+  --spacing-sm: 10px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --border-radius-sm: 6px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-family-base);
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 모든 요소에 폰트 상속 */
+*,
+*::before,
+*::after {
+  font-family: inherit;
+}
+
+/* 폼 요소 폰트 명시 */
+input,
+select,
+textarea,
+button {
+  font-family: var(--font-family-base);
+}
+
+/* 모노스페이스 폰트 클래스 */
+.font-mono,
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-family-mono);
+}
+
+/* ============================================
+   Custom Scrollbar
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-indicator.online {
+  background-color: var(--color-success);
+  box-shadow: var(--glow-success);
+  animation: pulse-glow 2s infinite;
+}
+
+.status-indicator.warning {
+  background-color: var(--color-warning);
+  box-shadow: var(--glow-warning);
+}
+
+.status-indicator.error {
+  background-color: var(--color-error);
+  box-shadow: var(--glow-error);
+  animation: pulse-glow 1s infinite;
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* ============================================
+   Industrial Dashboard Specific
+   ============================================ */
+.panel {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.panel-title {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel-body {
+  padding: 16px;
+}
+
+/* Data Display */
+.data-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.data-label {
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Status Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge-success {
+  background-color: var(--color-success-light);
+  color: var(--color-success);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-warning {
+  background-color: var(--color-warning-light);
+  color: var(--color-warning);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-error {
+  background-color: var(--color-error-light);
+  color: var(--color-error);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badge-info {
+  background-color: var(--color-info-light);
+  color: var(--color-info);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.badge-neutral {
+  background-color: var(--bg-hover);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+/* Live Indicator */
+.live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background-color: var(--color-error-light);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 4px;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-error);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.live-indicator::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-error);
+  border-radius: 50%;
+  animation: pulse-glow 1.5s infinite;
+}
+
+/* ============================================
+   Glassmorphism Utilities
+   ============================================ */
+
+/* Glass Base */
+.glass {
+  background: var(--glass-panel);
+  backdrop-filter: blur(var(--blur-amount));
+  -webkit-backdrop-filter: blur(var(--blur-amount));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+}
+
+/* Glass Panel (Card) */
+.glass-panel {
+  background: var(--glass-panel);
+  backdrop-filter: blur(var(--blur-amount));
+  -webkit-backdrop-filter: blur(var(--blur-amount));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shine Effect on Hover */
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(to right,
+      transparent,
+      var(--glass-shine),
+      transparent);
+  transform: rotate(45deg) translate(-100%, 0);
+  transition: transform 0.6s;
+  pointer-events: none;
+}
+
+.glass-panel:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glass), var(--shadow-neon);
+}
+
+.glass-panel:hover::before {
+  transform: rotate(45deg) translate(100%, 0);
+}
+
+/* Glass Header */
+.glass-header {
+  background: var(--glass-header);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+/* Neon Text */
+.text-neon {
+  color: var(--color-primary);
+  text-shadow: 0 0 10px var(--color-primary-glow);
+}
+
+.text-neon-success {
+  color: var(--color-success);
+  text-shadow: 0 0 10px var(--color-success-glow);
+}
+
+.text-neon-warning {
+  color: var(--color-warning);
+  text-shadow: 0 0 10px var(--color-warning-glow);
+}
+
+.text-neon-error {
+  color: var(--color-error);
+  text-shadow: 0 0 10px var(--color-error-glow);
+}
+
+/* Modern Scrollbar for Glass */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

@@ -1,0 +1,50 @@
+{
+    "tracking_number": {
+        "text": [
+            16,
+            191,
+            218,
+            241
+        ]
+    },
+    "region_code": {
+        "text": [
+            443,
+            170,
+            628,
+            238
+        ]
+    },
+    "recipient_name": {
+        "text": [
+            60,
+            258,
+            200,
+            312
+        ]
+    },
+    "recipient_address": {
+        "text": [
+            15,
+            320,
+            630,
+            375
+        ]
+    },
+    "sender_name": {
+        "text": [
+            92,
+            394,
+            221,
+            454
+        ]
+    },
+    "sender_address": {
+        "text": [
+            12,
+            458,
+            632,
+            537
+        ]
+    }
+}

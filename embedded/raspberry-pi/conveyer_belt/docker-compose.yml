@@ -1,0 +1,23 @@
+services:
+  mqtt-broker:
+    image: eclipse-mosquitto:2.0
+    container_name: mosquitto_broker
+    ports:
+      - "1883:1883"  # 외부(라파 본체/젯슨)에서 접속용
+    volumes:
+      - ./config:/mosquitto/config
+      - ./certs:/mosquitto/config/certs
+    restart: always
+
+  app:
+    build: ./control_app  
+    container_name: control_app
+    privileged: true     
+    devices:
+      - "/dev/i2c-1:/dev/i2c-1"       
+      - "/dev/gpiomem:/dev/gpiomem"   
+    environment:
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - mqtt-broker       
+    restart: always
